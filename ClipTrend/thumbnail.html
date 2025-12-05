@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>簡単サムネ作成</title>
+    <link rel="stylesheet" href="trend.css">
+    <!-- アイコン -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<h1><i class="fa-solid fa-image"></i> 簡単サムネ作成</h1>
+
+<!-- ホームに戻る -->
+<button class="back-button" onclick="location.href='index.html'">
+    <i class="fa-solid fa-house"></i> ホームへ戻る
+</button>
+
+<br><br>
+
+<div class="thumbnail-container">
+    <label>背景色:
+        <input type="color" id="bgColor" value="#ffcc00">
+    </label>
+    <br><br>
+    <label>文字:
+        <input type="text" id="textInput" placeholder="ここに文字を入力">
+    </label>
+    <br><br>
+    <label>文字色:
+        <input type="color" id="textColor" value="#000000">
+    </label>
+    <br><br>
+    <label>フォントサイズ:
+        <input type="number" id="fontSize" value="40"> px
+    </label>
+    <br><br>
+    <button onclick="generateThumbnail()">サムネ作成</button>
+    <br><br>
+    <canvas id="canvas" width="640" height="360" style="border:1px solid #ccc;"></canvas>
+    <br>
+    <a id="downloadBtn" download="thumbnail.png">ダウンロード</a>
+</div>
+
+<script>
+function generateThumbnail() {
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+
+    const bgColor = document.getElementById('bgColor').value;
+    const text = document.getElementById('textInput').value;
+    const textColor = document.getElementById('textColor').value;
+    const fontSize = parseInt(document.getElementById('fontSize').value, 10);
+
+    // 背景
+    ctx.fillStyle = bgColor;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // 文字
+    ctx.fillStyle = textColor;
+    ctx.font = `bold ${fontSize}px Arial`;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(text, canvas.width / 2, canvas.height / 2);
+
+    // ダウンロードリンク更新
+    const downloadBtn = document.getElementById('downloadBtn');
+    downloadBtn.href = canvas.toDataURL('image/png');
+    
+}
+</script>
+
+</body>
+</html>

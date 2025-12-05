@@ -1,0 +1,118 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background: #f7f7f7;
+    padding: 30px;
+}
+
+h1 {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.home-container {
+    margin-top: 40px;
+}
+
+.home-button {
+    font-size: 20px;
+    padding: 15px 30px;
+    background: #007bff;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.home-button:hover {
+    background: #0056cc;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 18px;
+    border: none;
+    background: #008CBA;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #006f99;
+}
+
+input {
+    padding: 5px;
+    font-size: 16px;
+    width: 80px;
+    text-align: center;
+}
+.back-button {
+    display: block;       /* ブロック要素にして横幅調整 */
+    margin: 40px auto 20px auto;    /* 上下余白20px、左右自動で中央 */
+    font-size: 16px;
+    padding: 8px 16px;
+    background: #555;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.back-button:hover {
+    background: #333;
+}
+
+.thumbnail-container {
+    max-width: 700px;
+    margin: 30px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.thumbnail-container input[type="text"],
+.thumbnail-container input[type="number"],
+.thumbnail-container input[type="color"] {
+    padding: 5px;
+    margin: 5px;
+    font-size: 16px;
+}
+
+.thumbnail-container button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 6px;
+    border: none;
+    background: #007bff;
+    color: white;
+    transition: 0.3s;
+}
+
+.thumbnail-container button:hover {
+    background: #0056cc;
+}
+
+#downloadBtn {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 16px;
+    color: #fff;
+    background: #28a745;
+    padding: 8px 16px;
+    border-radius: 6px;
+    text-decoration: none;
+}
+
+#downloadBtn:hover {
+    background: #1e7e34;
+}
+
+
+

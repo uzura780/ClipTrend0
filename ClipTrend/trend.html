@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>トレンド投票</title>
+<link rel="stylesheet" href="trend.css">
+</head>
+<body>
+
+<h1>トレンド投票</h1>
+
+<!-- 注意書き -->
+<div id="notice">
+⚠️ 注意：1ジャンルにつき1日1回の投票が可能です。必ず正式名称で投票してください。<br>
+ランキングは7日ごとにリセットされます。<br>
+不特定多数の人が見れます。不快になるような投票はおやめください。
+
+</div>
+
+<label>ジャンルを選択：</label>
+<select id="genreSelect"></select><br><br>
+
+<label>アイテム名を入力：</label>
+<input type="text" id="itemInput" placeholder="アイテム名を入力"><br><br>
+
+<button id="voteBtn">投票する</button>
+<!-- ホームに戻る -->
+<button class="back-button" onclick="location.href='index.html'">
+    <i class="fa-solid fa-house"></i> ホームへ戻る
+</button>
+
+<div id="countdown" style="margin-top:10px; font-weight:bold;"></div>
+
+<h2>ランキング</h2>
+
+<h3>音楽 
+  <button onclick="showAll('music')">詳しく</button>
+  <button onclick="showTop5('music')">閉じる</button>
+</h3>
+<ul id="musicRank"></ul>
+
+<h3>ゲーム 
+  <button onclick="showAll('game')">詳しく</button>
+  <button onclick="showTop5('game')">閉じる</button>
+</h3>
+<ul id="gameRank"></ul>
+
+<h3>アニメ 
+  <button onclick="showAll('anime')">詳しく</button>
+  <button onclick="showTop5('anime')">閉じる</button>
+</h3>
+<ul id="animeRank"></ul>
+
+<h3>SNS 
+  <button onclick="showAll('sns')">詳しく</button>
+  <button onclick="showTop5('sns')">閉じる</button>
+</h3>
+<ul id="snsRank"></ul>
+
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background: #f0f8ff;
+    padding: 20px;
+    color: #1e1e1e;
+}
+
+h1 { color: #1e90ff; margin-bottom: 20px; }
+h2, h3 { color: #1e90ff; margin-top: 20px; }
+
+#notice {
+    background: #ffffff;
+    border: 2px solid #1e90ff;
+    border-radius: 15px;
+    padding: 15px;
+    margin-bottom: 20px;
+    color: #1e90ff;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+input[type="text"], select {
+    padding: 10px;
+    border-radius: 15px;
+    border: 2px solid #1e90ff;
+    width: 220px;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+button {
+    padding: 10px 20px;
+    border-radius: 25px;
+    border: none;
+    background-color: #1e90ff;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    margin: 5px;
+}
+
+button:hover { background-color: #4169e1; }
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 10px auto 20px;
+    max-width: 450px;
+    max-height: 220px;
+    overflow-y: auto;
+    border: 1px solid #1e90ff;
+    border-radius: 15px;
+    background: #f8faff;
+}
+
+li {
+    background: #e6f0ff;
+    border: 1px solid #1e90ff;
+    border-radius: 15px;
+    margin: 5px 10px;
+    padding: 12px;
+    font-weight: bold;
+    transition: 0.3s;
+    text-align: left;
+}
+
+li:hover { background: #cce0ff; }
+
+h3 button {
+    font-size: 14px;
+    padding: 5px 10px;
+    border-radius: 20px;
+}
+
+#countdown {
+    font-size: 16px;
+    margin-top: 15px;
+    color: #ff4500;
+    font-weight: bold;
+}

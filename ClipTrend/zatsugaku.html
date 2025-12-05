@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>1分雑学クイズ</title>
+    <link rel="stylesheet" href="trend.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        .quiz-box { font-size: 20px; padding: 20px; border: 1px solid #ddd; border-radius: 10px; max-width: 500px; margin: auto; }
+        .choice { 
+            display: block;
+            padding: 10px; 
+            margin: 8px 0;
+            background: #eee; 
+            border-radius: 8px; 
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .choice:hover { background: #ddd; }
+        .correct { background: #8fe88f !important; }
+        .wrong { background: #ff8f8f !important; }
+        .next-btn {
+            margin-top: 15px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+<h1><i class="fa-solid fa-lightbulb"></i> 1分雑学クイズ</h1>
+
+<!-- ホームに戻る -->
+<button class="back-button" onclick="location.href='index.html'">
+    <i class="fa-solid fa-house"></i> ホームへ戻る
+</button>
+
+<br><br>
+
+<div class="quiz-box">
+    <h2 id="quiz-question">読み込み中…</h2>
+
+    <div id="choices"></div>
+
+    <button id="nextBtn" class="next-btn" style="display:none;" onclick="nextQuiz()">
+        次の問題へ
+    </button>
+</div>
+
+<script>
+// --- クイズデータ -------------------------
+const quizList = [
+  {
+    "q": "動画編集ソフトでタイムラインとは何を管理する場所？",
+    "choices": ["音声のみ", "動画のカット・配置", "色補正", "字幕"], 
+    "answer": 1
+  },
+  {
+    "q": "動画編集で『ノンリニア編集』とは？",
+    "choices": ["順番通りしか編集できない", "自由に順番を入れ替えられる", "音声のみ編集", "カメラ順のみ編集"], 
+    "answer": 1
+  },
+  {
+    "q": "動画のフレームレート24fpsは何を示す？",
+    "choices": ["1秒間の静止画枚数", "動画長さ", "音声周波数", "解像度"], 
+    "answer": 0
+  },
+  {
+    "q": "動画圧縮コーデックH.264は何を指す？",
+    "choices": ["コンテナ形式", "音声圧3縮", "圧縮方式", "ソフト名"], 
+    "answer": 2
+  },
+  {
+    "q": "編集でトランジションとは？",
+    "choices": ["字幕表示", "音声圧縮", "解像度変更", "動画の切り替え効果"], 
+    "answer": 3
+  },
+  {
+    "q": "色補正のためのツールは？",
+    "choices": ["カラーホイール", "タイムライン", "クロマキー", "トランジション"], 
+    "answer": 0
+  },
+  {
+    "q": "動画編集で音声を先に編集する理由は？",
+    "choices": ["エフェクトが早く作れる", "字幕が合いやすい", "音質が良いと映像も良く見える", "カットが正確になる"], 
+    "answer": 2
+  },
+  {
+    "q": "スマホ動画で一番バッテリーを消費する作業は？",
+    "choices": ["サムネ作成", "再生", "音楽再生", "書き出し"], 
+    "answer": 3
+  },
+  {
+    "q": "タイムリマップ機能でできることは？",
+    "choices": ["音声無音", "映像速度変更", "色変更", "字幕位置変更"], 
+    "answer": 1
+  },
+  {
+    "q": "動画フォーマットの『mp4』は？",
+    "choices": ["圧縮形式", "プレイヤー", "入れ物（コンテナ）", "カメラ規格"], 
+    "answer": 2
+  },
+  {
+    "q": "動画編集でモーションエフェクトとは？",
+    "choices": ["映像の動きに効果を付けること", "音声を加工する", "字幕の位置変更", "書き出し速度調整"], 
+    "answer": 0
+  },
+  {
+    "q": "クロマキーで青色が使われる場合は？",
+    "choices": ["服や肌が緑のとき", "目に優しい", "カメラ性能が低い", "安い色"], 
+    "answer": 0
+  },
+  {
+    "q": "編集ソフトでプロキシ編集を使う目的は？",
+    "choices": ["軽いデータで作業を早くする", "色補正するため", "音声のみ編集", "字幕を追加"], 
+    "answer": 0
+  },
+  {
+    "q": "映像のビットレートが高いとどうなる？",
+    "choices": ["再生速度が速くなる", "画質が悪くなる", "音声が消える", "画質が良いが容量大"], 
+    "answer": 3
+  },
+  {
+    "q": "リニア編集とは？",
+    "choices": ["自由に順番を変えられる方式", "順番通りにしか編集できない方式", "音声のみ編集", "カラーグレーディング専用"], 
+    "answer": 1
+  },
+  {
+    "q": "タイムラインでレイヤーを重ねる目的は？",
+    "choices": ["色補正するため", "字幕を削除するため", "動画と音声を重ねるため", "書き出しを速くするため"], 
+    "answer": 2
+  },
+  {
+    "q": "動画編集で『レンダリング』とは？",
+    "choices": ["音声を録音すること", "最終的に映像を書き出すこと", "エフェクトを削除すること", "字幕を作ること"], 
+    "answer": 1
+  },
+  {
+    "q": "動画編集ソフトで『スナップ機能』は何に使う？",
+    "choices": ["字幕挿入", "色補正", "音声圧縮", "カットや配置を正確に揃える"], 
+    "answer": 3
+  },
+  {
+    "q": "動画の解像度1080pは何を示す？",
+    "choices": ["縦1080ピクセル", "横1080ピクセル", "フレームレート1080fps", "音声周波数"], 
+    "answer": 0
+  },
+  {
+    "q": "動画の書き出し形式『MOV』は？",
+    "choices": ["編集ソフト名", "圧縮方式", "音声形式", "Appleの動画フォーマット"], 
+    "answer": 3
+  }
+]
+
+
+// 現在の問題番号
+let currentIndex = -1;
+
+
+// --- 問題を出す -----------------------------------
+function showQuiz() {
+    // ランダムに問題を選ぶ（連続重複なし）
+    let random;
+    do {
+        random = Math.floor(Math.random() * quizList.length);
+    } while (random === currentIndex && quizList.length > 1);
+
+    currentIndex = random;
+
+    const quiz = quizList[random];
+    document.getElementById("quiz-question").innerText = quiz.q;
+
+    const choiceBox = document.getElementById("choices");
+    choiceBox.innerHTML = "";
+
+    quiz.choices.forEach((choice, index) => {
+        const div = document.createElement("div");
+        div.className = "choice";
+        div.innerText = choice;
+
+        // クリック時
+        div.onclick = () => selectAnswer(div, index);
+
+        choiceBox.appendChild(div);
+    });
+
+    document.getElementById("nextBtn").style.display = "none";
+}
+
+
+// --- 回答処理 ---------------------------------------
+function selectAnswer(choiceDiv, index) {
+    const quiz = quizList[currentIndex];
+    const allChoices = document.querySelectorAll(".choice");
+
+    // 正解判定
+    if (index === quiz.answer) {
+        choiceDiv.classList.add("correct");
+    } else {
+        choiceDiv.classList.add("wrong");
+        allChoices[quiz.answer].classList.add("correct"); // 正解を表示
+    }
+
+    // 全選択肢を無効化
+    allChoices.forEach(c => c.style.pointerEvents = "none");
+
+    // 次へボタン表示
+    document.getElementById("nextBtn").style.display = "block";
+}
+
+
+// --- 次の問題へ -------------------------------------
+function nextQuiz() {
+    showQuiz();
+}
+
+// 初回表示
+showQuiz();
+</script>
+
+</body>
+</html>
+

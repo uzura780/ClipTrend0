@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>課金しますか</title>
+    <link rel="stylesheet" href="trend.css">
+</head>
+
+<body>
+
+    <div class="center-text">課金しますか？</div>
+
+    <button class="mid-btn" id="aaabth">いいえ</button>
+
+    <style>
+      .center-text {
+        position: fixed;
+        top: 20%;
+        left: 52%;
+        transform: translate(-50%, -50%);
+        font-size: 80px;
+        font-weight: bold;
+        color: rgb(0, 0, 0);
+        text-shadow: 0 0 10px rgb(255, 255, 255);
+      }
+
+      .mid-btn {
+        position: fixed;
+        top: 35%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 15px 25px;
+        font-size: 40px;
+        background: #007bff;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      }
+    </style>
+
+    <script>
+      document.getElementById("aaabth").addEventListener("click", () => {
+        window.location.href = "index.html"; // ←ここを好きなページに変更！
+      });
+    </script>
+
+</body>
+</html>
